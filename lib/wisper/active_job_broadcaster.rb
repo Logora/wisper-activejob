@@ -10,6 +10,7 @@ module Wisper
 
     class Wrapper < ::ActiveJob::Base
       queue_as :default
+      retry_on StandardError
 
       def perform(class_name, event, args)
         listener = class_name.constantize
